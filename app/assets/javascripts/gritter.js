@@ -198,10 +198,10 @@ window.GritterModernizr = function (a, b, c) {
       if(time_alive){
         this._custom_timer = time_alive;
       }
-
+      console.log(icon)
       var image_str = (image != '') ? '<img src="' + image + '" class="gritter-image" />' : '',
         class_name = (image != '' || icon != '') ? 'gritter-with-image' : 'gritter-without-image';
-
+      console.log(image_str)
       // String replacements on the template
       tmp = this._str_replace(
         ['[[username]]', '[[text]]', '[[close]]', '[[image]]', '[[icon]]', '[[number]]', '[[class_name]]', '[[item_class]]'],
