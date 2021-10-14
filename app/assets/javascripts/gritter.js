@@ -198,14 +198,15 @@ window.GritterModernizr = function (a, b, c) {
         this._custom_timer = time_alive;
       }
 
+      var image_str;
       if (image.includes('<span')) {
-        const image_str = image
+        image_str = image
       } else if (image != '') {
-        const image_str = '<img src="' + image + '" class="gritter-image" />'
+        image_str = '<img src="' + image + '" class="gritter-image" />'
       } else {
-        const image_str = ''
+        image_str = ''
       }
-      const class_name = (image != '') ? 'gritter-with-image' : 'gritter-without-image';
+      var class_name = (image != '') ? 'gritter-with-image' : 'gritter-without-image';
 
       // String replacements on the template
       tmp = this._str_replace(
