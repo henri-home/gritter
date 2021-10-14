@@ -126,7 +126,7 @@ window.GritterModernizr = function (a, b, c) {
   * CSS3 check
   */
   var gritter_item;
-  var gritter_content = '[[close]][[image]]<div class="[[class_name]]"><span class="gritter-title">[[username]]</span><p>[[text]]</p></div><div style="clear:both"></div>';
+  var gritter_content = '[[close]][[image]][[icon]]<div class="[[class_name]]"><span class="gritter-title">[[username]]</span><p>[[text]]</p></div><div style="clear:both"></div>';
   if(GritterModernizr.borderradius && GritterModernizr.rgba) {
     gritter_item = '<div class="gritter-item gritter-css3">'+ gritter_content +'</div>';
   } else {
@@ -174,6 +174,7 @@ window.GritterModernizr = function (a, b, c) {
       var user = params.title,
         text = params.text,
         image = params.image || '',
+        icon = params.icon || '',
         sticky = params.sticky || false,
         item_class = params.class_name || '',
         position = $.gritter.options.position,
@@ -198,20 +199,13 @@ window.GritterModernizr = function (a, b, c) {
         this._custom_timer = time_alive;
       }
 
-      var image_str;
-      if (image.includes('<span')) {
-        image_str = image
-      } else if (image != '') {
-        image_str = '<img src="' + image + '" class="gritter-image" />'
-      } else {
-        image_str = ''
-      }
-      var class_name = (image != '') ? 'gritter-with-image' : 'gritter-without-image';
+      var image_str = (image != '') ? '<img src="' + image + '" class="gritter-image" />' : '',
+        class_name = (image != '' || icon != '') ? 'gritter-with-image' : 'gritter-without-image';
 
       // String replacements on the template
       tmp = this._str_replace(
-        ['[[username]]', '[[text]]', '[[close]]', '[[image]]', '[[number]]', '[[class_name]]', '[[item_class]]'],
-        [user, text, this._tpl_close, image_str, this._item_count, class_name, item_class], tmp
+        ['[[username]]', '[[text]]', '[[close]]', '[[image]]', '[[icon]]', '[[number]]', '[[class_name]]', '[[item_class]]'],
+        [user, text, this._tpl_close, image_str, icon, this._item_count, class_name, item_class], tmp
       );
 
       this['_before_open_' + number]();
