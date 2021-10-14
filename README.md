@@ -1,5 +1,5 @@
 # gritter
-
+    Fork of Gritter to allow Icomoon icon fonts in place of images
     version 1.2.0
     Robin Brouwer
 
@@ -7,7 +7,7 @@ This Ruby on Rails gem allows you to easily add Growl-like notifications to your
 
 ## Note
 
-Are you using Rails 3.0 or lower? Check out [the 'old' branch on Github](https://github.com/RobinBrouwer/gritter/tree/old). Want support for IE6? 
+Are you using Rails 3.0 or lower? Check out [the 'old' branch on Github](https://github.com/RobinBrouwer/gritter/tree/old). Want support for IE6?
 Also check out that branch, because the newer version of gritter inside this gem dropped support for it.
 
 
@@ -34,27 +34,27 @@ And that's it!
 ## Changes
 
 Version 1.2.0 changes (02/08/2015):
-    
+
     - Added Rails 4 support.
     - Added on_click support.
 
 Version 1.1.0 changes (31/01/2013):
-    
+
     - All gflash messages can also be stored in the Rails flash messages (optional).
     - Added i18n interpolation for gflash messages.
     - Added default values for the gflash messages.
     - Fixed several other issues.
 
 Version 1.0.3 changes (26/01/2013):
-    
+
     - :nodom_wrap added by indykish
 
 Version 1.0.2 changes (03/09/2012):
-    
+
     - Merged pull request #22 (namespaced controllers gflash fix).
 
 Version 1.0.1 changes (23/01/2012):
-    
+
     - Fixed gflash(:js => true) in Ruby 1.9.2 and 1.9.3.
 
 Version 1.0.0 changes (17/11/2011):
@@ -85,20 +85,20 @@ extend_gritter
 To add the script-tags we added another function called `js`. It allows you to easily add script-tags around your javascript.
 It can be used in combination with gritter, but also other Javascript you want to run.
 
-The most popular feature of this gem is `gflash`. This replaces the regular flash messages in Rails and 
+The most popular feature of this gem is `gflash`. This replaces the regular flash messages in Rails and
 automatically puts these in gritter boxes. Read further to learn more about gflash.
 
 
 ### add_gritter
 
-The `add_gritter` helper allows you to add a gritter notification to your application. 
+The `add_gritter` helper allows you to add a gritter notification to your application.
 It outputs Javascript directly into your template. It works like this inside a `js.erb` file:
 
 ```ruby
 <%= add_gritter("This is a notification just for you!") %>
 ```
 
-The `add_gritter` helper allows you to easily set the text for the notification. 
+The `add_gritter` helper allows you to easily set the text for the notification.
 When you want to change the title, just pass the `:title` argument to the helper:
 
 ```ruby
@@ -110,6 +110,7 @@ There are many more arguments you can pass to the helper:
 ```ruby
 :title => "This is a title"            # => Allows you to set the title for the notification.
 :image => "/images/rails.png"          # => Allows you to add an image to the notification.
+:icon => "icomoon fonts"               # => Allows you to add  html string that refers to an icon.
 :sticky => true                        # => Allows you to make the notification sticky.
 :time => 4000                          # => Allows you to set the time when the notification disappears (in ms).
 :class_name => "gritter"               # => Allows you to set a different classname.
@@ -209,7 +210,7 @@ You can also use the `js` helper , add_gritter("Another one") to add script-tags
 ### gflash
 
 The `gflash` helper is a different kind of `flash[:notice]` message. It uses the `add_gritter` helper and the default images used in this gem.
-It saves the messages in `session[:gflash]`. It can also save the messages inside the default Rails flash messages (`flash` and `flash.now`). 
+It saves the messages in `session[:gflash]`. It can also save the messages inside the default Rails flash messages (`flash` and `flash.now`).
 To do this, you have to add the following to an initializer: `Gritter.rails_flash_fallback = true`.
 
 Add the following inside your controller action:
@@ -266,7 +267,7 @@ def create
 end
 ```
 
-Besides passing the exact text inside the controller, gflash also supports locales (both for messages and titles). 
+Besides passing the exact text inside the controller, gflash also supports locales (both for messages and titles).
 You can generate `gflash.en.yml` by using the following command: `rails g gritter:locale`.
 Here you can set the locales for all your gflash messages and the titles. It works like this:
 
@@ -382,7 +383,7 @@ The `add_gritter` helper produces JQuery code as shown below.
 ```
 
 ```js
-jQuery(function() { 
+jQuery(function() {
   jQuery.gritter.add({ image: '/assets/success.png', title: 'Success', text: 'See my notification' });
 });
 ```
@@ -392,7 +393,7 @@ jQuery(function() {
 If you don't want to wrap `jQuery.gritter.add({` inside a `jQuery(function()` then include the argument `:nodom_wrap`
 
 The modified `add_gritter` helper with `nodom_wrap` looks like this:
- 
+
 ```ruby
 <%= add_gritter(:success, "See my notification", :nodom_wrap => true )%>
 ```
@@ -404,7 +405,7 @@ jQuery.gritter.add({
   image: '/assets/success.png',
   title: 'Success',
   text: 'The product has been created successfully!'
-}); 
+});
 ```
 
 The argument can be included in `gflash` helper as well.
